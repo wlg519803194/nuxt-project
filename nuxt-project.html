@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<link rel="stylesheet" type="text/css" href="nuxt.css">
+<body>
+	<div class="title">
+		<h1>此文章根据 <a href="http://www.jb51.net/article/131425.htm">http://www.jb51.net/article/131425.htm</a>修改而来</h1>
+	</div>
+	<div class="part1">
+		<p>推荐使用Nuxt提供的模板。假设你已经安装了vue-cli，如果没有安装请先执行npm install vue-cli -g来安装vue-cli。</p>
+		<textarea>
+			$ vue init nuxt-community/starter-template <project-name>
+		</textarea>
+		<p>进入到项目文件夹中安装依赖包。</p>
+		<textarea>
+			cd <project-name>
+			npm install
+		</textarea>
+		<p>启动项目。</p>
+		<textarea>
+			npm run dev
+		</textarea>
+		<p>打开浏览器，访问 <a href="http://localhost:3000">http://localhost:3000</a>。就能看到Next渲染出来的页面了。</p>
+	</div>
+	<div class="part2">
+		<h4>3.添加页面</h4>
+		<p>新建完成的项目结构如下图所示：</p>
+		<div>
+			<img src="20171225100149979.png">
+		</div>
+		<p>Nuxt约定所有页面都放在pages文件夹下，Nuxt会根据目录结构自动生成对应的路由。</p>
+		<p>现在在pages下新建Vue文件test.vue，访问http://localhost:3000/test即可看到刚刚添加的页面</p>
+	</div>
+	<div class="part3">
+		<h4>4.引入第三方插件</h4>
+		<p>通常情况下我们都需要引入第三方的插件，比如前段组件，日志等。</p>
+		<h6>第一步当然是安装插件，此处以element-UI为例。</h6>
+		<textarea>
+				
+			npm install element-ui
+		</textarea>
+		<p>虽然下载了element-ui的包但是却不能像普通项目那样直接在Vue实例中import然后使用。Nuxt的内核项目都在.nuxt目录下，如果修改这下面的文件是不会生效的。因为每次编译都会重新生成文件，所以直接修改该项目文件是无效的。</p>
+		<img src="20171225100255765.jpg">
+		<p>
+			虽然不能直接修改，但是Nuxt提供了特殊的方式引入第三方插件。
+		</p>
+		<textarea>
+			import Vue from 'vue'
+			import Element from 'element-ui'
+			import 'element-ui/lib/theme-chalk/index.css'
+			Vue.use(Element)
+		</textarea>
+		<p>
+			第二步，修改nuxt.config.js。添加plugins属性。
+		</p>
+		<textarea>
+			/**
+		   * include third-party plugin
+		   */
+		  plugins: ['~plugins/element-ui'] // element-ui.js文件地址
+		</textarea>
+		<p>重新编译之后，Nuxt会编译该第三方插件并使用。此时在任何一个Vue文件中都能使用该第三方插件。</p>
+
+	</div>
+	<div class="part4">
+		<h4>5.静态资源文件</h4>
+		<p>
+			你可以把静态资源文件放到static文件夹下，然后就可以使用http://localhost:3000/<文件名>来访问静态资源文件。
+		</p>
+		<p>
+			Nuxt提供的功能还有很多，比如动态路由，ESLint代码检测。今天先介绍到这里，其他深入的用饭请参考官方网站。
+		</p>
+		<p>
+			原文链接：<a href="https://www.jianshu.com/p/a30b9fff1852">https://www.jianshu.com/p/a30b9fff1852</a>
+		</p>
+	</div>
+
+</body>
+</html>
